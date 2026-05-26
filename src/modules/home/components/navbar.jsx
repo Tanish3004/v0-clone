@@ -10,7 +10,7 @@ import {
   useUser,
 } from "@clerk/nextjs"
 
-import { Button } from "@/components/ui/button"
+import { Button } from "../../../components/ui/button"
 
 const Navbar = () => {
   const { isSignedIn } = useUser()
