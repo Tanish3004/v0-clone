@@ -8,8 +8,8 @@ import { ArrowUpIcon, Loader2Icon } from "lucide-react";
 import { useRouter } from 'next/navigation';
 import z from "zod";
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { cn } from "../../../lib/utils";
+import { Button } from "../../../components/ui/button";
 
 const formSchema = z.object({
   content: z.string().min(1, "Project description is required").max(1000, "Description is too long")

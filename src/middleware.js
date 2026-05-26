@@ -1,15 +1,17 @@
-import { clerkMiddleware,createRouteMatcher } from '@clerk/nextjs/server';
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
+// These routes do NOT require a user to log in
 const isPublicRoute = createRouteMatcher([
     "/",
     "/sign-in(.*)",
     "/sign-up(.*)",
-    "/api(.*)",
-])
+    "/api(.*)", // This ensures /api/inngest stays open and fully accessible to the dev server
+]);
 
-export default clerkMiddleware(async(auth,req)=>{
-    if(isPublicRoute(req)){
-        await auth.protect()
+export default clerkMiddleware(async (auth, req) => {
+    // Note the "!" inversion below: Protect if it is NOT a public route
+    if (!isPublicRoute(req)) {
+        await auth.protect();
     }
 });
 
